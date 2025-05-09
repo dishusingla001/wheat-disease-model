@@ -6,9 +6,13 @@ from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
 import pickle
+from fertilizer_helper import load_fertilizer_data, get_fertilizer_info
+
 
 # Constants
 PREDICT_DIR = r'D:\Wheat-diesease\wheat-disease-detection\testCDD'
+
+
 
 IMG_SIZE = 64
 MODEL_FILENAME = 'wheatDiseaseModel.keras'
@@ -53,10 +57,15 @@ def predict_on_images(model, image_dir):
 
         print(f"Image: {os.listdir(image_dir)[i]} → Predicted Label: {predicted_label}")
 
+    fertilizer_info = get_fertilizer_info(predicted_label, fertilizer_data)
+    print(fertilizer_info)
+
+
 # Main logic
 if __name__ == "__main__":
     # Load the trained model (don't retrain, just load)
     model = load_trained_model(MODEL_FILENAME)
+    fertilizer_data = load_fertilizer_data()
     if model is None:
         print("Error loading model, exiting.")
         exit()
