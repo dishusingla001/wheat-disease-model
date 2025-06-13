@@ -23,7 +23,7 @@ LB_FILENAME = 'label_binarizer.pkl'
 
 # Helper functions
 def convert_gif_to_png(dataset_dir):
-    for subdir, _, files in os.walk(dataset_dir):
+    for subdir, _ , files in os.walk(dataset_dir):
         for file in files:
             if file.endswith(".gif"):
                 gif_path = os.path.join(subdir, file)
