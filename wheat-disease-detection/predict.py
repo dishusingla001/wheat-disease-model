@@ -8,7 +8,7 @@ import pickle
 from fertilizer_helper import load_fertilizer_data, get_fertilizer_info
 
 # Constants
-PREDICT_DIR = r'D:\Wheat-diesease\wheat-disease-model\wheat-disease-detection\testCDD'
+# PREDICT_DIR = r'D:\Wheat-diesease\wheat-disease-model\wheat-disease-detection\testCDD'
 IMG_SIZE = 64
 MODEL_FILENAME = 'D:\Wheat-diesease\wheat-disease-model\wheatDiseaseModel.keras'
 LABEL_BINARIZER_FILE = 'D:\Wheat-diesease\wheat-disease-model\label_binarizer.pkl'
@@ -48,12 +48,12 @@ def predict_on_images(model, image_dir, label_binarizer, fertilizer_data):
         print(f"🔍 Predicted Disease: {predicted_label}")
 
         # Get fertilizer and dosage info
-        fertilizer_info = get_fertilizer_info(predicted_label, fertilizer_data)
-        if fertilizer_info:
-            print(f"🌱 Fertilizer Recommendation: {fertilizer_info['fertilizer']}")
-            print(f"💊 Dosage: {fertilizer_info['dosage']}")
-        else:
-            print("⚠️ No fertilizer info found for this disease.")
+        # fertilizer_info = get_fertilizer_info(predicted_label, fertilizer_data)
+        # if fertilizer_info:
+        #     print(f"🌱 Fertilizer Recommendation: {fertilizer_info['fertilizer']}")
+        #     print(f"💊 Dosage: {fertilizer_info['dosage']}")
+        # else:
+        #     print("⚠️ No fertilizer info found for this disease.")
 
 # Main logic
 if __name__ == "__main__":
