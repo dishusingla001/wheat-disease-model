@@ -23,7 +23,7 @@ LB_FILENAME = 'label_binarizer.pkl'
 
 # Helper functions
 def convert_gif_to_png(dataset_dir):
-    for subdir, _, files in os.walk(dataset_dir):
+    for subdir, _ , files in os.walk(dataset_dir):
         for file in files:
             if file.endswith(".gif"):
                 gif_path = os.path.join(subdir, file)
@@ -103,29 +103,29 @@ def plot_history(history):
     plt.tight_layout()
     plt.show()
 
-def predict_on_images(model, image_dir, label_binarizer):
-    if not os.path.exists(image_dir):
-        print(f"Error: The directory {image_dir} does not exist.")
-        return
+# def predict_on_images(model, image_dir, label_binarizer):
+#     if not os.path.exists(image_dir):
+#         print(f"Error: The directory {image_dir} does not exist.")
+#         return
 
-    image_names = os.listdir(image_dir)
-    processed_images = []
+#     image_names = os.listdir(image_dir)
+#     processed_images = []
 
-    for name in image_names:
-        img_path = os.path.join(image_dir, name)
-        img = cv2.imread(img_path)
-        if img is not None:
-            img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
-            processed_images.append(img)
-        else:
-            print(f"Skipping invalid image: {img_path}")
+#     for name in image_names:
+#         img_path = os.path.join(image_dir, name)
+#         img = cv2.imread(img_path)
+#         if img is not None:
+#             img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
+#             processed_images.append(img)
+#         else:
+#             print(f"Skipping invalid image: {img_path}")
 
-    processed_images = preprocess_images(np.array(processed_images))
-    predictions = model.predict(processed_images)
+#     processed_images = preprocess_images(np.array(processed_images))
+#     predictions = model.predict(processed_images)
 
-    for i, prediction in enumerate(predictions):
-        predicted_label = label_binarizer.inverse_transform([prediction])[0]
-        print(f"Image: {image_names[i]} → Predicted Label: {predicted_label}")
+#     for i, prediction in enumerate(predictions):
+#         predicted_label = label_binarizer.inverse_transform([prediction])[0]
+#         print(f"Image: {image_names[i]} → Predicted Label: {predicted_label}")
 
 # Main logic
 if __name__ == "__main__":
@@ -168,5 +168,5 @@ if __name__ == "__main__":
     test_loss, test_acc = model.evaluate(test_images, test_labels)
     print(f"Test Loss: {test_loss:.4f} | Test Accuracy: {test_acc:.4f}")
 
-    print("🧪 Predicting on new images...")
-    predict_on_images(model, PREDICT_DIR, label_binarizer)
+    # print("🧪 Predicting on new images...")
+    # predict_on_images(model, PREDICT_DIR, label_binarizer)
